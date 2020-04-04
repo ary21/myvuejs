@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-        {{ name }} -- {{ old ? 'Sudah tua' : age + ' Masih muda' }} 
+        {{ name }} -- {{ birthYear }} => {{ old ? age + 'Sudah tua' : age + ' Masih muda' }} 
         <br>
         {{ message }} 
         <!-- {{{ raw }}} --> <!-- Fail -->
@@ -56,9 +56,17 @@
             data: {
                 name: 'Eko',
                 message: 'Hello Vue!',
-                age: 32,
-                old: false,
+                birthYear: 1990,
+                // old: false,
                 raw: '<p>This is <b>RAW</b></p>'
+            },
+            computed: {
+                age: function() {
+                    return 2020 - this.birthYear;
+                },
+                old: function() { 
+                    return this.age < 30 ? false : true;
+                }
             }
         })
 
