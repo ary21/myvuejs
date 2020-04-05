@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MyVueJS</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="/dist/vue.js"></script>
 </head>
 <body>
     <div id="app">
@@ -19,23 +20,41 @@
     <br>
     <div id="app-2">
         <span v-bind:title="pesan">
-            Hover your mouse over me for a few seconds
-            to see my dynamically bound title!
+            Hover your mouse over me for a few seconds to see my dynamically bound title!
         </span>
     </div>
 
     <br>
     <div id="app-3">
         <span v-if="seen">Now you see me</span>
+        <span v-else>Now i'm hidden</span>
+        <br>
+        <span v-show="!seen">Here use show not seen!</span>
     </div>
 
     <br>
     <div id="app-4">
         <ol>
-            <li v-for="todo in todos">
-            {{ todo.text }}
+            <li v-for="todo in todos">{{ todo.text }}</li>
+        </ol>
+
+        <br>
+        <ul>
+            <li v-for="n in 5">{{ n }}</li>
+        </ul>
+
+        <br> <!-- Failed -->
+        <h4>Filter Loop</h4>
+        <ol>
+            <li v-for="todo in todos"> <!-- | filterBy 'vue' -->
+            {{ todo.text | capitalize }}
             </li>
         </ol>
+
+        <!-- <input v-model="searchText1">
+        <ul>
+            <li v-repeat="todos | filterBy 'v' in todos.text">{{ todos.text }}</li>
+        </ul> -->
     </div>
 
     <br>
@@ -77,6 +96,7 @@
             }
         })
         
+        // dirrective > conditional
         var app3 = new Vue({
             el: '#app-3',
             data: {
@@ -85,13 +105,14 @@
         })
         // app3.seen = false
 
+        // dirrective > loop
         var app4 = new Vue({
             el: '#app-4',
             data: {
                 todos: [
-                { text: 'Learn JavaScript' },
-                { text: 'Learn Vue' },
-                { text: 'Build something awesome' }
+                    { text: 'Learn JavaScript' },
+                    { text: 'Learn Vue' },
+                    { text: 'Build something awesome' }
                 ]
             }
         })
