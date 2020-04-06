@@ -61,12 +61,26 @@
     <div id="app-5">
         <p>{{ message }}</p>
         <button v-on:click="reverseMessage">Reverse Message</button>
+        
+        <br>
+        <a href="" v-on:click.prevent="enterme">Click Me</a>
+
+        <br>
+        <img v-bind:src.literal="https://vuejs.org/images/logo.png" alt="">
+
+        <br>
+        <input type="text" v-model="pesan" v-on:keyup.enter="enterme">
     </div>
 
     <br>
     <div id="app-6">
         <p>{{ message }}</p>
         <input v-model="message">
+
+        <br>
+        <input type="checkbox" v-model="gender" name="gender" id="genderMale" value="male">Male
+        <input type="checkbox" v-model="gender" name="gender" id="genderFemale" value="female">Female
+        <p>Selected : {{ gender }}</p>
     </div>
 
     <script>
@@ -96,7 +110,7 @@
             }
         })
         
-        // dirrective > conditional
+        // DIRRECTIVE > CONDITIONAL
         var app3 = new Vue({
             el: '#app-3',
             data: {
@@ -105,7 +119,7 @@
         })
         // app3.seen = false
 
-        // dirrective > loop
+        // DIRRECTIVE > LOOP
         var app4 = new Vue({
             el: '#app-4',
             data: {
@@ -126,14 +140,19 @@
             methods: {
                 reverseMessage: function () {
                     this.message = this.message.split('').reverse().join('')
+                },
+                enterme: function() {
+                    alert('Hello vue ' + (this.pesan ? this.pesan : '') )
                 }
             }
         })
 
+        // INPUT BINDING
         var app6 = new Vue({
             el: '#app-6',
             data: {
-                message: 'Hello Vue!'
+                message: 'Hello Vue!',
+                gender: []
             }
         })
     </script>

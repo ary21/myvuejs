@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyVueJS Component</title>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li><a href="#" @click="currentView='home'">Home</a></li>
+            <li><a href="#" @click="currentView='member'">Member</a></li>
+        </ul>
+        <component :is="currentView" keep-alive></component>
+    </div>
+
+    <template id="homeTemplate">
+        <div>
+            <h1>Welcome</h1> 
+            <p>My VueJS Project</p>
+        </div>
+    </template>
+
+    <template id="memberTemplate">
+        <ul>
+            <li v-for="member in members">{{ member }}</li>
+        </ul>
+    </template>
+
+    <script>
+        Vue.component('home', {
+            template: '#homeTemplate'
+        })
+
+        Vue.component('member', {
+            template: '#memberTemplate',
+            data: function (){
+                return {
+                    members: ['Budi', 'Susi', 'Tono']
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                currentView: 'home'
+            }
+        })
+    </script>
+</body>
+</html>
